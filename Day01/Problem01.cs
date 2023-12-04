@@ -98,23 +98,40 @@ public class Problem01
             }
         }
 
-        public bool FindLongestNumberWordFromStringBeginning(string text, out int len, out int num)
+        /// <summary>
+        /// Searches longest matching word in the trie from the beginning of the input string.
+        /// Does an early return if nothing is found.
+        /// </summary>
+        /// <param name="inputString">How many letters the longest found matching word consists of.</param>
+        /// <param name="len">How many letters the longest found matching word consists of.</param>
+        /// <param name="num">What number the matching word presents i.e. three is 3.</param>
+        /// <returns>
+        /// True if a matching word was found. 
+        /// Longest found word length and actual number it presents are assigned to out variables.
+        /// </returns>
+        public bool FindLongestNumberWordFromStringBeginning(string inputSring, out int len, out int num)
         {
             len = 0;
             num = 0;
+            // Take into account edge case "six" vs "sixty"
+            // Save the "six" (longest found word) and keep looking for even longer words
+            // This makes sure the intended word is catched instead of some prefix of it.
+            bool wordFound = false;
 
             TrieNode currentNode = _root;
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < inputSring.Length; i++)
             {
-                if (currentNode.Children.ContainsKey(text[i]))
+                if (currentNode.Children.ContainsKey(inputSring[i]))
                 {
-                    currentNode = currentNode.Children[text[i]];
+                    currentNode = currentNode.Children[inputSring[i]];
 
                     if (currentNode.EndOfWord == true)
                     {
                         len = i;
                         num = currentNode.Number;
+                        wordFound = true;
+                        
                         if (currentNode.Children.Count == 0)
                         {
                             return true;
@@ -123,11 +140,11 @@ public class Problem01
                 }
                 else
                 {
-                    return false;
+                    return wordFound;
                 }
             }
 
-            return false;
+            return wordFound;
         }
     }
 
