@@ -67,19 +67,19 @@ public class Problem01
     // For part 2. Trie is a fast search algorithm for words.
     class Trie
     {
-        TrieNode root;
+        TrieNode _root;
 
         public Trie()
         {
-            root = new TrieNode();
+            _root = new TrieNode();
         }
 
         public void AddNumberWord(string word, int value)
         {
             char [] chars = word.ToCharArray();
-            TrieNode node = root;
+            TrieNode node = _root;
             int lastIndex = chars.Length - 1;
-            for (int i = 0; i < chars.Count(); i++)
+            for (int i = 0; i < chars.Length; i++)
             {
                 if (node.Children.ContainsKey(chars[i]))
                 {
@@ -87,7 +87,7 @@ public class Problem01
                 }
                 else
                 {
-                    TrieNode newTrie = new TrieNode();
+                    TrieNode newTrie = new();
 
                     if (lastIndex == i)
                     {
@@ -108,7 +108,7 @@ public class Problem01
             len = 0;
             num = 0;
 
-            TrieNode node = root;
+            TrieNode node = _root;
 
             for (int i = 0; i < chars.Length; i++)
             {
@@ -139,7 +139,7 @@ public class Problem01
     // Contains additional information for StringNumberTrieNode type: Number, WordLength
     class TrieNode
     {
-        public Dictionary<char, TrieNode> Children = new Dictionary<char, TrieNode>();
+        public Dictionary<char, TrieNode> Children = new();
         public bool EndOfWord;
         public int Number, WordLength;
     }
