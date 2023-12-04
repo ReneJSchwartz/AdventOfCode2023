@@ -24,15 +24,15 @@ public class Problem01
     {
         // Follow a trie tree with strings. Note: numbers can overlap.
         Trie trieNums = new();
-        trieNums.AddNumberWord("one".ToCharArray(), 1);
-        trieNums.AddNumberWord("two".ToCharArray(), 2);
-        trieNums.AddNumberWord("three".ToCharArray(), 3);
-        trieNums.AddNumberWord("four".ToCharArray(), 4);
-        trieNums.AddNumberWord("five".ToCharArray(), 5);
-        trieNums.AddNumberWord("six".ToCharArray(), 6);
-        trieNums.AddNumberWord("seven".ToCharArray(), 7);
-        trieNums.AddNumberWord("eight".ToCharArray(), 8);
-        trieNums.AddNumberWord("nine".ToCharArray(), 9);
+        trieNums.AddNumberWord("one", 1);
+        trieNums.AddNumberWord("two", 2);
+        trieNums.AddNumberWord("three", 3);
+        trieNums.AddNumberWord("four", 4);
+        trieNums.AddNumberWord("five", 5);
+        trieNums.AddNumberWord("six", 6);
+        trieNums.AddNumberWord("seven", 7);
+        trieNums.AddNumberWord("eight", 8);
+        trieNums.AddNumberWord("nine", 9);
 
         var sumOfAllRows = 0;
         var trieWordLength = 0;
@@ -49,7 +49,7 @@ public class Problem01
                     continue;
                 }
                 // look for a word and if found, increment i by word len - 2 to take overlapping into account
-                if (trieNums.FindLongestNumberWordFromStringBeginning(line[i..].ToCharArray(), out trieWordLength, out trieFoundTextNumber))
+                if (trieNums.FindLongestNumberWordFromStringBeginning(line[i..], out trieWordLength, out trieFoundTextNumber))
                 {
                     i += trieWordLength - 2;
                     rowNums.Add(trieFoundTextNumber);
@@ -74,8 +74,9 @@ public class Problem01
             root = new TrieNode();
         }
 
-        public void AddNumberWord(char[] chars, int value)
+        public void AddNumberWord(string word, int value)
         {
+            char [] chars = word.ToCharArray();
             TrieNode node = root;
             int lastIndex = chars.Length - 1;
             for (int i = 0; i < chars.Count(); i++)
@@ -101,8 +102,9 @@ public class Problem01
             }
         }
 
-        public bool FindLongestNumberWordFromStringBeginning(char[] chars, out int len, out int num)
+        public bool FindLongestNumberWordFromStringBeginning(string text, out int len, out int num)
         {
+            char [] chars = text.ToCharArray();
             len = 0;
             num = 0;
 
