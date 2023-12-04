@@ -13,8 +13,8 @@ public class Problem01
         foreach (var item in IO.Lines(_realData))
         {
             List<int> rowNumbers = Parser.GetSingleNumbersInt(item);
-            string firstAndLast = rowNumbers.First().ToString() + rowNumbers.Last().ToString();
-            sum += int.Parse(firstAndLast);
+            var firstAndLastLetter = rowNumbers.First().ToString() + rowNumbers.Last().ToString();
+            sum += int.Parse(firstAndLastLetter);
         }
         IO.Print(sum);
     }
@@ -54,8 +54,8 @@ public class Problem01
                 // If word is not found, proceed to the next letter
             }
 
-            var firstAndLast = rowNums.First().ToString() + rowNums.Last().ToString();
-            sumOfAllRows += int.Parse(firstAndLast);
+            var firstAndLastLetter = rowNums.First().ToString() + rowNums.Last().ToString();
+            sumOfAllRows += int.Parse(firstAndLastLetter);
             rowNums.Clear();
         }
         IO.Print(sumOfAllRows);
