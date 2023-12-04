@@ -3,9 +3,9 @@ using Utils.IO;
 
 public class Problem01
 {
-    string _testDataP1 = @"C:\Git\AdventOfCode2023\Day01\ExampleData.txt";
-    string _testDataP2 = @"C:\Git\AdventOfCode2023\Day01\Part2ExampleData.txt";
-    string _realData = @"C:\Git\AdventOfCode2023\Day01\Data.txt";
+    private readonly string _testDataP1 = @"C:\Git\AdventOfCode2023\Day01\ExampleData.txt";
+    private readonly string _testDataP2 = @"C:\Git\AdventOfCode2023\Day01\Part2ExampleData.txt";
+    private readonly string _realData = @"C:\Git\AdventOfCode2023\Day01\Data.txt";
 
     public void Part1()
     {
@@ -65,9 +65,9 @@ public class Problem01
     }
 
     // For part 2. Trie is a fast search algorithm for words.
-    class Trie
+    private class Trie
     {
-        TrieNode _root;
+        readonly TrieNode _root;
 
         public Trie()
         {
@@ -137,7 +137,7 @@ public class Problem01
     }
 
     // Contains additional information for StringNumberTrieNode type: Number, WordLength
-    class TrieNode
+    private class TrieNode
     {
         public Dictionary<char, TrieNode> Children = new();
         public bool EndOfWord;
