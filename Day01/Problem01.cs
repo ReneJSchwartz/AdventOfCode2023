@@ -61,7 +61,7 @@ public class Problem01
         IO.Print(sumOfAllRows);
     }
 
-    // For part 2. Trie is a fast search algorithm for words.
+    // For part 2. A trie is a fast data structure and search algorithm for words.
     private class Trie
     {
         readonly TrieNode _root;
