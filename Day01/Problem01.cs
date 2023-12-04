@@ -1,7 +1,5 @@
-using System.Text.RegularExpressions;
 using Utils.Parser;
 using Utils.IO;
-using Microsoft.VisualBasic;
 
 public class Problem01
 {
@@ -14,8 +12,8 @@ public class Problem01
         var sum = 0;
         foreach (var item in IO.Lines(_realData))
         {
-            List<int> numbers = Parser.GetSingleNumbersInt(item);
-            var firstAndLast = numbers.First().ToString() + numbers.Last().ToString();
+            List<int> rowNumbers = Parser.GetSingleNumbersInt(item);
+            var firstAndLast = rowNumbers.First().ToString() + rowNumbers.Last().ToString();
             sum += int.Parse(firstAndLast);
         }
         IO.Print(sum);
@@ -66,7 +64,7 @@ public class Problem01
         IO.Print(sumOfAllRows);
     }
 
-
+    // For part 2. Trie is a fast search algorithm for words.
     class Trie
     {
         TrieNode root;
@@ -109,6 +107,7 @@ public class Problem01
             num = 0;
 
             TrieNode node = root;
+
             for (int i = 0; i < chars.Length; i++)
             {
                 if (node.Children.ContainsKey(chars[i]))
@@ -130,11 +129,12 @@ public class Problem01
                     return false;
                 }
             }
+
             return false;
         }
     }
 
-    // Contains additional information for StringNumberTrieNode type
+    // Contains additional information for StringNumberTrieNode type: Number, WordLength
     class TrieNode
     {
         public Dictionary<char, TrieNode> Children = new Dictionary<char, TrieNode>();
