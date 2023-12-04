@@ -64,7 +64,7 @@ public class Problem01
     // For part 2. A trie is a fast data structure and search algorithm for words.
     private class Trie
     {
-        readonly TrieNode _root;
+        private readonly TrieNode _root;
 
         public Trie()
         {
@@ -102,7 +102,7 @@ public class Problem01
         /// Searches longest matching word in the trie from the beginning of the input string.
         /// Does an early return if nothing is found.
         /// </summary>
-        /// <param name="inputString">How many letters the longest found matching word consists of.</param>
+        /// <param name="inputString">Self explanatory.</param>
         /// <param name="len">How many letters the longest found matching word consists of.</param>
         /// <param name="num">What number the matching word presents i.e. three is 3.</param>
         /// <returns>
@@ -131,7 +131,7 @@ public class Problem01
                         len = i;
                         num = currentNode.Number;
                         wordFound = true;
-                        
+
                         if (currentNode.Children.Count == 0)
                         {
                             return true;
@@ -148,7 +148,7 @@ public class Problem01
         }
     }
 
-    // Contains additional information for custom StringNumberTrieNode type: Number, WordLength
+    /// <summary>Contains additional information for custom StringNumberTrieNode type: Number, WordLength.</summary>
     private class TrieNode
     {
         public Dictionary<char, TrieNode> Children = new();
