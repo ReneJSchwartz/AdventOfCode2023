@@ -13,7 +13,7 @@ public class Problem01
         foreach (var item in IO.Lines(_realData))
         {
             List<int> rowNumbers = Parser.GetSingleNumbersInt(item);
-            var firstAndLast = rowNumbers.First().ToString() + rowNumbers.Last().ToString();
+            string firstAndLast = rowNumbers.First().ToString() + rowNumbers.Last().ToString();
             sum += int.Parse(firstAndLast);
         }
         IO.Print(sum);
@@ -35,9 +35,6 @@ public class Problem01
         trieNums.AddNumberWord("nine", 9);
 
         var sumOfAllRows = 0;
-        var trieWordLength = 0;
-        var trieFoundTextNumber = 0;
-
         List<int> rowNums = new();
         foreach (var line in IO.Lines(_realData))
         {
@@ -48,13 +45,13 @@ public class Problem01
                     rowNums.Add(int.Parse(line[i].ToString()));
                     continue;
                 }
-                // look for a word and if found, increment i by word len - 2 to take overlapping into account
-                if (trieNums.FindLongestNumberWordFromStringBeginning(line[i..], out trieWordLength, out trieFoundTextNumber))
+                // Look for a word and if found, increment i by word len - 2 to take overlapping into account
+                if (trieNums.FindLongestNumberWordFromStringBeginning(line[i..], out int trieWordLength, out int trieFoundTextNumber))
                 {
                     i += trieWordLength - 2;
                     rowNums.Add(trieFoundTextNumber);
                 }
-                // if not found, proceed to next letter
+                // If word is not found, proceed to the next letter
             }
 
             var firstAndLast = rowNums.First().ToString() + rowNums.Last().ToString();
@@ -76,14 +73,13 @@ public class Problem01
 
         public void AddNumberWord(string word, int value)
         {
-            char [] chars = word.ToCharArray();
-            TrieNode node = _root;
-            int lastIndex = chars.Length - 1;
-            for (int i = 0; i < chars.Length; i++)
+            TrieNode currentNode = _root;
+            int lastIndex = word.Length - 1;
+            for (int i = 0; i < word.Length; i++)
             {
-                if (node.Children.ContainsKey(chars[i]))
+                if (currentNode.Children.ContainsKey(word[i]))
                 {
-                    node = node.Children[chars[i]];
+                    currentNode = currentNode.Children[word[i]];
                 }
                 else
                 {
@@ -96,31 +92,30 @@ public class Problem01
                         newTrie.WordLength = i + 1;
                     }
 
-                    node.Children.Add(chars[i], newTrie);
-                    node = newTrie;
+                    currentNode.Children.Add(word[i], newTrie);
+                    currentNode = newTrie;
                 }
             }
         }
 
         public bool FindLongestNumberWordFromStringBeginning(string text, out int len, out int num)
         {
-            char [] chars = text.ToCharArray();
             len = 0;
             num = 0;
 
-            TrieNode node = _root;
+            TrieNode currentNode = _root;
 
-            for (int i = 0; i < chars.Length; i++)
+            for (int i = 0; i < text.Length; i++)
             {
-                if (node.Children.ContainsKey(chars[i]))
+                if (currentNode.Children.ContainsKey(text[i]))
                 {
-                    node = node.Children[chars[i]];
+                    currentNode = currentNode.Children[text[i]];
 
-                    if (node.EndOfWord == true)
+                    if (currentNode.EndOfWord == true)
                     {
                         len = i;
-                        num = node.Number;
-                        if (node.Children.Count == 0)
+                        num = currentNode.Number;
+                        if (currentNode.Children.Count == 0)
                         {
                             return true;
                         }
@@ -136,7 +131,7 @@ public class Problem01
         }
     }
 
-    // Contains additional information for StringNumberTrieNode type: Number, WordLength
+    // Contains additional information for custom StringNumberTrieNode type: Number, WordLength
     private class TrieNode
     {
         public Dictionary<char, TrieNode> Children = new();
