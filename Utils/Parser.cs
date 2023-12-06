@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Utils.Parser
 {
@@ -17,6 +18,24 @@ namespace Utils.Parser
                 }
             }
             return numbers;
+        }
+
+        public static List<int> GetNumbersInt(string text)
+        {
+            Regex numbersRegex = new Regex("\\d+");
+            return numbersRegex.Matches(text)
+                .Cast<Match>()
+                .Select(m => int.Parse(m.Value))
+                .ToList();
+        }
+
+        public static List<long> GetNumbersLong(string text)
+        {
+            Regex numbersRegex = new Regex("\\d+");
+            return numbersRegex.Matches(text)
+                .Cast<Match>()
+                .Select(m => long.Parse(m.Value))
+                .ToList();
         }
     }
 }
