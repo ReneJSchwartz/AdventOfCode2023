@@ -2,19 +2,26 @@
 
 Console.WriteLine("Hello, AoC!");
 
-Problem01 day01 = new Problem01(); 
+Problem01 day01 = new Problem01();
+Problem02 day02 = new Problem02(); 
+Problem03 day03 = new Problem03(); 
 Problem04 day04 = new Problem04();
 Problem05 day05 = new Problem05();
+Problem06 day06 = new Problem06();
+Problem07 day07 = new Problem07();
+
 
 // day01.Part1();
 // day01.Part2();
-
+// day02.Part1(); // Todo
+// day02.Part2(); // Todo
+// day03.Part1(); // Todo
+// day03.Part2(); // Todo
 // day04.Part1();
-day04.Part2();
-
-
+// day04.Part2();
 // day05.Part1();
-// day05.Part2();
+// day05.Part2(); // Todo
+
 
 /* saadut tähdet
 day 1: * 41, ** 44
