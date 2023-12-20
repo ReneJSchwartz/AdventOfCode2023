@@ -315,14 +315,14 @@ public class Problem05
         IO.Print("lowest: " + lowestLocation);
 
         //PrintSource();
-        void PrintSource()
-        {
-            foreach (var item in usedData)
-            {
-                Console.WriteLine(item);
-                Console.WriteLine();
-            }
-        }
+        // void PrintSource()
+        // {
+        //     foreach (var item in usedData)
+        //     {
+        //         Console.WriteLine(item);
+        //         Console.WriteLine();
+        //     }
+        // }
     }
 
     // Differences: seeds come in pairs, process much larger amt of seeds

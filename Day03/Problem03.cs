@@ -1,6 +1,6 @@
 public class Problem03
 {
-    public void DoStuff()
+    public void Part1()
     {
         
     }
