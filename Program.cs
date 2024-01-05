@@ -12,8 +12,8 @@ Problem07 day07 = new Problem07();
 // day01.Part2();
 // day02.Part1(); // Todo
 // day02.Part2(); // Todo
-// day03.Part1(); // Todo
-// day03.Part2(); // Todo
+// day03.Part1();
+day03.Part2();
 // day04.Part1();
 // day04.Part2();
 // day05.Part1();
@@ -28,6 +28,7 @@ Problem07 day07 = new Problem07();
 
 /* saadut tähdet
 day 1: * 41, ** 44
+day 3: * 43, ** 46
 day 4: * 48, ** 52
 day 5: * 35, **
 day 6: * 51, ** 51 
